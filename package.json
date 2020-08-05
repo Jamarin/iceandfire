@@ -7,6 +7,8 @@
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
   },
+  "repository": "https://github.com/Jamarin/iceandfire.git",
+  "author": "Jose Antonio Marín <contacto@jamarin.net>",
   "dependencies": {
     "core-js": "^3.6.5",
     "vue": "^2.6.11"
