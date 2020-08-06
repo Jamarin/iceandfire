@@ -24,9 +24,13 @@ yarn lint
 ```
 
 ### To do
-* Implement vuex with secure localStorage
-* Complete cached of data obtained from API.
 * Allow filter by other attributes
+   * ~~~Spoiler free~~~
+   * House
+   * Religion
+   * Nature
+   * Alive or dead
 * Include styled-components
 * Complete characters cards
 * Include other list like houses, religions, actors...
+* Include a map with characters paths
