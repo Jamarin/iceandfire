@@ -2,18 +2,21 @@
     <div id="app">
         <SearchBar/>
         <CharacterList/>
+        <Footer/>
     </div>
 </template>
 
 <script>
 import CharacterList from './components/CharacterList'
 import SearchBar from './components/SearchBar'
+import Footer from "@/components/Footer";
 
 export default {
     name: 'App',
     components: {
         CharacterList,
-        SearchBar
+        SearchBar,
+        Footer
     }
 }
 </script>
