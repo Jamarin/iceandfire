@@ -1,12 +1,11 @@
 <template>
-    <div id="card" :class="(!this.getAvoidSpoilers) ? (characterData.alive) ? 'alive' : 'dead' : ''">
+    <div id="card" :class="(!this.getAvoidSpoilers) ? (characterData.alive) ? 'alive' : 'dead' : ''" @click="showDetailInfo(characterData)">
         <h1 class="title">{{ characterData.name }}</h1>
         <div class="image"><img :src="characterData.image" :alt="characterData.name"></div>
         <div class="data">
-            <p><b>Age:</b> {{ characterData.age || '-' }}</p>
-            <p><b>Gender:</b> {{ characterData.gender }}</p>
             <p><b>{{ characterData.house }}</b></p>
         </div>
+        <DetailInfo :characterData="characterData" v-if="showDetail"/>
     </div>
 </template>
 
@@ -16,8 +15,29 @@
     export default {
         name: 'Character',
         props: ['characterData'],
+        data: function () {
+            return {
+                showDetail: false,
+            }
+        },
         computed: {
-            ...mapGetters(["getAvoidSpoilers"]),
+            ...mapGetters(["getAvoidSpoilers", "getSelectedCharacter"]),
+        },
+        methods: {
+            showDetailInfo(characterData) {
+                if(this.getSelectedCharacter != null) {
+                    if(this.getSelectedCharacter.name !== characterData.name) {
+                        this.$store.commit("updateSelectedCharacter", { selectedCharacter: characterData });
+                        console.log("Exists and is different");
+                    } else {
+                        this.$store.commit("updateSelectedCharacter", { selectedCharacter: null });
+                        console.log("Exists and is the same");
+                    }
+                } else {
+                    this.$store.commit("updateSelectedCharacter", { selectedCharacter: characterData });
+                    console.log("Not exists");
+                }
+            }
         }
     }
 </script>
@@ -27,6 +47,7 @@
     #card {
         border: 1px solid black;
         border-radius: 5px;
+        cursor: pointer;
     }
 
     #card.alive {

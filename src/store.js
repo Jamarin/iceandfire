@@ -15,6 +15,7 @@ export default new Vuex.Store({
         searchTerm: '',
         charactersList: [],
         avoidSpoilers: true,
+        selectedCharacter: null,
     },
     mutations: {
         updateSearchTerm (type, payload) {
@@ -25,6 +26,9 @@ export default new Vuex.Store({
         },
         updateAvoidSpoilers (type, payload) {
             this.state.avoidSpoilers = payload.avoidSpoilers;
+        },
+        updateSelectedCharacter (type, payload) {
+            this.state.selectedCharacter = payload.selectedCharacter;
         }
     },
     getters: {
@@ -36,6 +40,9 @@ export default new Vuex.Store({
         },
         getAvoidSpoilers: state => {
             return state.avoidSpoilers;
+        },
+        getSelectedCharacter: state => {
+            return state.selectedCharacter;
         }
     }
 })

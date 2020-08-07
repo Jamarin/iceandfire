@@ -153,4 +153,12 @@
     input[type="checkbox"] {
         display: inline-block;
     }
+
+    button {
+        border-radius: 10px;
+        border: 2px solid #1cc91c;
+        background-color: #77DD77;
+    }
+
+    button:
 </style>

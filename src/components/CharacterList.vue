@@ -1,6 +1,7 @@
 <template>
 	<div id="cards-root">
 		<Character v-for="(character, index) in charactersListFiltered" :key="index" :characterData="character"/>
+		<DetailInfo v-if="getSelectedCharacter" :characterData="getSelectedCharacter"></DetailInfo>
 	</div>
 </template>
 
@@ -8,11 +9,13 @@
 import api from '../backend-api'
 import Character from './Character'
 import {mapGetters} from "vuex";
+import DetailInfo from "@/components/DetailInfo";
 
 export default {
 	name: 'CharacterList',
 	components: {
-		Character
+		Character,
+		DetailInfo
 	},
 	data() {
 		return {
@@ -21,7 +24,7 @@ export default {
 		}
 	},
 	computed: {
-		...mapGetters(["getCharactersList", "getSearchTerm"]),
+		...mapGetters(["getCharactersList", "getSearchTerm", "getSelectedCharacter"]),
 		charactersListFiltered: function () {
 			if (this.getSearchTerm !== "") {
 				return this.charactersList.filter((character) => (character.name.toLowerCase().includes(this.getSearchTerm.toLowerCase())));
