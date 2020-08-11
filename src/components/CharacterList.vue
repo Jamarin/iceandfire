@@ -1,7 +1,7 @@
 <template>
 	<div id="cards-root">
 		<Character v-for="(character, index) in charactersListFiltered" :key="index" :characterData="character" @toggle-modal="onClickCharacter"/>
-		<DetailInfo v-if="getSelectedCharacter" :characterData="getSelectedCharacter"></DetailInfo>
+		<DetailInfo v-if="showDetails" :characterData="getSelectedCharacter"></DetailInfo>
 	</div>
 </template>
 
@@ -42,7 +42,6 @@ export default {
 	methods: {
 		onClickCharacter() {
 			console.log('Click');
-			this.showDetails = !this.showDetails;
 			if(this.showDetails) {
 				this.$bvModal.show('modal-card');
 			} else {
