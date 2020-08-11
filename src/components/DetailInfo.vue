@@ -1,5 +1,5 @@
 <template>
-    <dialog open id="card" :class="(!this.getAvoidSpoilers) ? (characterData.alive) ? 'alive' : 'dead' : ''" @click="showDetailInfo(characterData)">
+    <b-modal id="modal-card" :title="characterData.name" :class="(!this.getAvoidSpoilers) ? (characterData.alive) ? 'alive' : 'dead' : ''">
         <h1 class="title">{{ characterData.name }}</h1>
         <div class="image"><img :src="characterData.image" :alt="characterData.name"></div>
         <div class="data">
@@ -7,7 +7,7 @@
             <p><b>Gender:</b> {{ characterData.gender }}</p>
             <p><b>{{ characterData.house }}</b></p>
         </div>
-    </dialog>
+    </b-modal>
 </template>
 
 <script>

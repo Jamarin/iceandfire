@@ -1,6 +1,6 @@
 <template>
 	<div id="cards-root">
-		<Character v-for="(character, index) in charactersListFiltered" :key="index" :characterData="character"/>
+		<Character v-for="(character, index) in charactersListFiltered" :key="index" :characterData="character" @toggle-modal="onClickCharacter"/>
 		<DetailInfo v-if="getSelectedCharacter" :characterData="getSelectedCharacter"></DetailInfo>
 	</div>
 </template>
@@ -20,7 +20,7 @@ export default {
 	data() {
 		return {
 			charactersList: [],
-			loading: true
+			loading: true,
 		}
 	},
 	computed: {
@@ -31,12 +31,24 @@ export default {
 			} else {
 				return this.charactersList;
 			}
+		},
+		showDetails: function () {
+			return !!this.getSelectedCharacter;
 		}
 	},
 	created() {
 		this.fetchCharactersData();
 	},
 	methods: {
+		onClickCharacter() {
+			console.log('Click');
+			this.showDetails = !this.showDetails;
+			if(this.showDetails) {
+				this.$bvModal.show('modal-card');
+			} else {
+				this.$bvModal.hide('modal-card');
+			}
+		},
 		fetchCharactersData() {
 			this.loading = true;
 			if (this.getCharactersList.length === 0) {

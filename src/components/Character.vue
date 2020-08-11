@@ -5,7 +5,6 @@
         <div class="data">
             <p><b>{{ characterData.house }}</b></p>
         </div>
-        <DetailInfo :characterData="characterData" v-if="showDetail"/>
     </div>
 </template>
 
@@ -15,11 +14,6 @@
     export default {
         name: 'Character',
         props: ['characterData'],
-        data: function () {
-            return {
-                showDetail: false,
-            }
-        },
         computed: {
             ...mapGetters(["getAvoidSpoilers", "getSelectedCharacter"]),
         },
@@ -37,6 +31,7 @@
                     this.$store.commit("updateSelectedCharacter", { selectedCharacter: characterData });
                     console.log("Not exists");
                 }
+                this.$emit('toggle-modal');
             }
         }
     }
